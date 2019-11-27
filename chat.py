@@ -65,13 +65,23 @@ settings = {
          "debug":True
 }
 
-
-if __name__ == '__main__':
+def make_app():
     tornado.options.parse_command_line()
     app = tornado.web.Application([
-            (r"/chat/", ChatHandler),
-        ],**settings)
+        (r"/chat/", ChatHandler),
+    ], **settings)
 
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
-    tornado.ioloop.IOLoop.current().start()
+    application = tornado.ioloop.IOLoop.current()
+    return application
+
+if __name__ == '__main__':
+    # tornado.options.parse_command_line()
+    # app = tornado.web.Application([
+    #         (r"/chat/", ChatHandler),
+    #     ],**settings)
+    #
+    # http_server = tornado.httpserver.HTTPServer(app)
+    # http_server.listen(options.port)
+    make_app().start()

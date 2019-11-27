@@ -12,7 +12,7 @@ define("port", default=6000, type=int)
 class IndexHandler(RequestHandler):
     def get(self):
         self.render("index1.html")
-class IndexHandler(RequestHandler):
+class IndexHandler2(RequestHandler):
     def get(self):
         self.render("index.html")
 
