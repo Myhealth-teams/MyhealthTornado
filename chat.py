@@ -78,7 +78,6 @@ def make_app():
     application = tornado.ioloop.IOLoop.current()
     return application
 
-application = make_app()
 if __name__ == '__main__':
     # tornado.options.parse_command_line()
     # app = tornado.web.Application([
@@ -87,4 +86,4 @@ if __name__ == '__main__':
     #
     # http_server = tornado.httpserver.HTTPServer(app)
     # http_server.listen(options.port)
-    application.start()
+    make_app().start()
