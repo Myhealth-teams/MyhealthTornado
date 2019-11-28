@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo 'starting MyhealthTornado project'
 cd /usr/src/MyhealthTornado
