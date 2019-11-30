@@ -7,7 +7,7 @@ import tornado.httpserver
 
 from tornado.options import define,options
 from tornado.websocket import WebSocketHandler
-# from tornado.ioloop import IOLoop
+
 
 define("port", default=8000, type=int)
 
@@ -23,14 +23,6 @@ class ChatHandler(WebSocketHandler):
         ChatHandler.client_id +=1
         self.client_id = ChatHandler.client_id
         self.users.add(self)
-        # for u in self.users:  #登录告知所有人
-        #     data = {
-        #         "user":self.client_id,
-        #         "time":datetime.datetime.now().strftime("%H:%M:%S"),
-        #         "state":"1"
-        #     }
-        #     u.write_message(data)
-        # print(self.client_id,"连接成功")
 
     def on_message(self, message):
         print(self.client_id,"正在发消息")
@@ -48,13 +40,6 @@ class ChatHandler(WebSocketHandler):
     def on_close(self):
         print(self.client_id,"退出聊天室")
         self.users.remove(self)
-        # for u in self.users:
-        #     data = {
-        #         "user": self.client_id,
-        #         "time": datetime.datetime.now().strftime("%H:%M:%S"),
-        #         "state": "0",
-        #     }
-        #     u.write_message(data)
 
     def check_origin(self, origin):
         return True
@@ -79,11 +64,4 @@ def make_app():
     return application
 
 if __name__ == '__main__':
-    # tornado.options.parse_command_line()
-    # app = tornado.web.Application([
-    #         (r"/chat/", ChatHandler),
-    #     ],**settings)
-    #
-    # http_server = tornado.httpserver.HTTPServer(app)
-    # http_server.listen(options.port)
     make_app().start()
